@@ -9,7 +9,7 @@
 	<author>Partners In Health</author>
 	<description>PIH Haiti Implementation Module</description>
 	<activator>@MODULE_PACKAGE@.PihHaitiActivator</activator>
-	<require_version>1.6.1</require_version>
+	<require_version>1.9.0</require_version>
 	
 	<require_modules>
 		<require_module version="0.7">org.openmrs.module.reporting</require_module>
