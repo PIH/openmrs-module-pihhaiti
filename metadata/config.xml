@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module configVersion="1.0">
+	
+	<!-- Base Module Properties -->
+	<id>pihhaiti</id>
+	<name>PIH Haiti Customizations</name>
+	<version>1.2.5</version>
+	<package>org.openmrs.module.@MODULE_ID@</package>
+	<author>Partners In Health</author>
+	<description>PIH Haiti Implementation Module</description>
+	<activator>@MODULE_PACKAGE@.PihHaitiActivator</activator>
+	<require_version>1.6.1</require_version>
+	
+	<require_modules>
+		<require_module version="0.7">org.openmrs.module.reporting</require_module>
+	</require_modules>
+	
+	<!-- Extensions -->
+	<extension>
+		<point>org.openmrs.patientDashboard.bottomPatientHeader</point>
+		<class>@MODULE_PACKAGE@.web.extension.PatientHeaderExtension</class>
+	</extension>
+	
+	<extension>
+		<point>org.openmrs.headerFullIncludeExt</point>
+		<class>@MODULE_PACKAGE@.web.extension.HeaderFullExtension</class>
+	</extension>
+	
+	<!-- Required Global Properties -->
+	<globalProperty>
+		<property>@MODULE_ID@.hivEmrIdentifierTypeName</property>
+		<defaultValue>HIVEMR-V1</defaultValue>
+		<description>Name of the Patient Identifier that represents the patient id in the HIV EMR</description>
+	</globalProperty>
+	
+	<globalProperty>
+		<property>pihhaiti.rehab.reportsToDisplay</property>
+		<defaultValue></defaultValue>
+		<description>Pipe-separated list of report names to include on the rehab dashboard</description>
+	</globalProperty>	
+
+	<messages>
+		<lang>en</lang>
+		<file>messages.properties</file>
+	</messages>
+	<messages>
+		<lang>fr</lang>
+		<file>messages_fr.properties</file>
+	</messages>
+	
+</module>
