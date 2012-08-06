@@ -60,7 +60,7 @@ public class PihHaitiActivator implements Activator {
 		
 		log.info("Registering Zanmi Lansante address format.");
 		
-		AddressTemplate at = new AddressTemplate();
+		AddressTemplate at = new AddressTemplate("zanmi");
 		at.setDisplayName("Zanmi Lansante Address Format");
 		at.setCodeName("haiti_zl");
 		at.setCountry("Haiti"); 
