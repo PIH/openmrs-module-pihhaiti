@@ -20,89 +20,116 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.GlobalProperty;
+import org.openmrs.api.context.Context;
 import org.openmrs.layout.web.address.AddressSupport;
 import org.openmrs.layout.web.address.AddressTemplate;
 import org.openmrs.layout.web.name.NameSupport;
 import org.openmrs.layout.web.name.NameTemplate;
 import org.openmrs.module.Activator;
+import org.openmrs.module.ModuleActivator;
 
 /**
  * This class contains the logic that is run every time this module
  * is either started or shutdown
  */
-public class PihHaitiActivator implements Activator {
+public class PihHaitiActivator implements ModuleActivator {
+
+    private String ADDRESS_FORMAT_GP = "layout.address.format";
+
+    private String VISITS_ENABLED_GP = "visits.enabled";
 
 	private Log log = LogFactory.getLog(this.getClass());
 
 	/**
 	 * @see org.openmrs.module.Activator#startup()
 	 */
-	public void startup() {
+    @Override
+	public void started() {
 		log.info("Starting pihhaiti Module");
 		registerHaitiAddressTemplate();
 		registerHaitiNameTemplate();
+        disableVisits();
 	}
 	
 	/**
 	 *  @see org.openmrs.module.Activator#shutdown()
 	 */
-	public void shutdown() {
+    @Override
+	public void stopped() {
 		log.info("Shutting down pihhaiti Module");
-		unregisterHaitiAddressTemplate();
 		unregisterHaitiNameTemplate();
 		CustomBrandingHandler.removeCustomizationFromWebapp();
 	}
-	
-	/**
+
+    @Override
+    public void willRefreshContext() {
+
+    }
+
+    @Override
+    public void contextRefreshed() {
+
+    }
+
+    @Override
+    public void willStart() {
+
+    }
+
+    @Override
+    public void willStop() {
+
+    }
+
+    /**
 	 * Sets up the Zanmi Lansante Address Template
 	 */
 	public void registerHaitiAddressTemplate() {
 		
 		log.info("Registering Zanmi Lansante address format.");
-		
-		AddressTemplate at = new AddressTemplate("zanmi");
-		at.setDisplayName("Zanmi Lansante Address Format");
-		at.setCodeName("haiti_zl");
-		at.setCountry("Haiti"); 
-		
-		Map<String, String> nameMappings = new HashMap<String, String>();
-		nameMappings.put("country", "pihhaiti.address.country");
-		nameMappings.put("stateProvince", "pihhaiti.address.stateProvince");
-		nameMappings.put("cityVillage", "pihhaiti.address.cityVillage");
-		nameMappings.put("neighborhoodCell", "pihhaiti.address.neighborhoodCell");
-		nameMappings.put("address1", "pihhaiti.address.address1");
-		nameMappings.put("address2", "pihhaiti.address.address2");
-		at.setNameMappings(nameMappings);
-		
-		Map<String, String> sizeMappings = new HashMap<String, String>();
-		sizeMappings.put("country", "40");
-		sizeMappings.put("stateProvince", "40");
-		sizeMappings.put("cityVillage", "40");
-		sizeMappings.put("neighborhoodCell", "60");
-		sizeMappings.put("address1", "60");
-		sizeMappings.put("address2", "60");
-		at.setSizeMappings(sizeMappings);
-		
-		Map<String, String> elementDefaults = new HashMap<String, String>();
-		elementDefaults.put("country", "Haiti");	
-		at.setElementDefaults(elementDefaults);
-		
-		at.setLineByLineFormat(Arrays.asList("address2","address1","neighborhoodCell cityVillage","stateProvince country"));
-		
-		AddressSupport.getInstance().getLayoutTemplates().add(at);
+
+        StringBuffer addressTemplate = new StringBuffer();
+
+        addressTemplate.append("<org.openmrs.layout.web.address.AddressTemplate>");
+
+        addressTemplate.append("<nameMappings class=\"properties\">");
+        addressTemplate.append("<property name=\"country\" value=\"pihhaiti.address.country\"/>");
+        addressTemplate.append("<property name=\"stateProvince\" value=\"pihhaiti.address.stateProvince\"/>");
+        addressTemplate.append("<property name=\"cityVillage\" value=\"pihhaiti.address.cityVillage\"/>");
+        addressTemplate.append("<property name=\"neighborhoodCell\" value=\"pihhaiti.address.neighborhoodCell\"/>");
+        addressTemplate.append("<property name=\"address1\" value=\"pihhaiti.address.address1\"/>");
+        addressTemplate.append("<property name=\"address2\" value=\"pihhaiti.address.address2\"/>");
+        addressTemplate.append("</nameMappings>");
+
+        addressTemplate.append("<sizeMappings class=\"properties\">");
+        addressTemplate.append("<property name=\"country\" value=\"40\"/>");
+        addressTemplate.append("<property name=\"stateProvince\" value=\"40\"/>");
+        addressTemplate.append("<property name=\"cityVillage\" value=\"40\"/>");
+        addressTemplate.append("<property name=\"neighborhoodCell\" value=\"60\"/>");
+        addressTemplate.append("<property name=\"address1\" value=\"60\"/>");
+        addressTemplate.append("<property name=\"address2\" value=\"60\"/>");
+        addressTemplate.append("</sizeMappings>");
+
+	    addressTemplate.append("<elementDefaults class=\"properties\">");
+        addressTemplate.append("<property name=\"country\" value=\"Haiti\"/>");
+        addressTemplate.append("</elementDefaults>");
+
+        addressTemplate.append("<lineByLineFormat>");
+        addressTemplate.append("<string>address2</string>");
+        addressTemplate.append("<string>address1</string>");
+        addressTemplate.append("<string>neighborhoodCell cityVillage</string>");
+        addressTemplate.append("<string>stateProvince country</string>");
+        addressTemplate.append("</lineByLineFormat>");
+
+        addressTemplate.append("</org.openmrs.layout.web.address.AddressTemplate>");
+
+        GlobalProperty addressFormat = Context.getAdministrationService().getGlobalPropertyObject(ADDRESS_FORMAT_GP);
+        addressFormat.setPropertyValue(addressTemplate.toString());
+        Context.getAdministrationService().saveGlobalProperty(addressFormat);
+
 	}
-	
-	/**
-	 * Unregisters the Zanmi Lansante Address Template
-	 */
-	public void unregisterHaitiAddressTemplate() {
-		for (Iterator<AddressTemplate> i = AddressSupport.getInstance().getLayoutTemplates().iterator(); i.hasNext();) {
-			AddressTemplate at = i.next();
-			if ("haiti_zl".equals(at.getCodeName())) {
-				i.remove();
-			}
-		}
-	}
+
 	
 	/**
 	 * Sets up the Zanmi Lansante Name Template
@@ -142,5 +169,14 @@ public class PihHaitiActivator implements Activator {
 			}
 		}
 	}
- 	
+
+
+    /**
+     * Sets the global property to enable visits to false
+     */
+    public void disableVisits() {
+        GlobalProperty visitsEnabled = Context.getAdministrationService().getGlobalPropertyObject(VISITS_ENABLED_GP);
+        visitsEnabled.setValue(false);
+        Context.getAdministrationService().saveGlobalProperty(visitsEnabled);
+    }
 }
