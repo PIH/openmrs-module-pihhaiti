@@ -2,6 +2,10 @@
 	border-color: white;
 }
 
+#content {
+	padding-top: 60px;
+}
+
 div {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
@@ -23,6 +27,7 @@ div.topBar {
 	position: absolute;
 	padding-top:4px;
 	padding-left:10px;
+	margin-top: 5px;
 }
 
 a.boldWhiteLink {
