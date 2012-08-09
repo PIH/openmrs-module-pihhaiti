@@ -5,7 +5,7 @@
 	<c:choose>
 		<c:when test="${authenticatedUser == null}">
 			<center style="padding-top:100px;">
-				<img height="100px" src="${pageContext.request.contextPath}/moduleResources/pihhaiti/images/logos/PIH_ZL_plum.jpg">
+				<img src="${pageContext.request.contextPath}/moduleResources/pihhaiti/images/logos/PIH_ZL_plum-567x100.jpg">
 				<br/>
 				<br/>
 				<h3 class="pihPlum">Electronic Medical Records System</h3>
