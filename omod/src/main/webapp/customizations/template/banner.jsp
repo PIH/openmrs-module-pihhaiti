@@ -2,7 +2,7 @@
 
 <div id="banner">
 	<a href="${pageContext.request.contextPath}">
-	  <img style="width:100px; height:25px; vertical-align:middle;" src="${pageContext.request.contextPath}/moduleResources/pihhaiti/images/openmrs_logo_white_large.png" alt="OpenMRS" border="0"/>
+	  <img style="height:30px; padding:3px; vertical-align:middle;" src="${pageContext.request.contextPath}/moduleResources/pihhaiti/images/logos/PIH_ZL_plum.jpg" alt="PIH Medical Records System" border="0"/>
 	</a>
 	<div class="fullBar topBar">
 		<a class="boldWhiteLink" href="${pageContext.request.contextPath}"><spring:message code="Navigation.home"/></a>
