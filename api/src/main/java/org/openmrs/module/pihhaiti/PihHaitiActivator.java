@@ -97,7 +97,7 @@ public class PihHaitiActivator implements ModuleActivator {
         addressTemplate.append("<property name=\"country\" value=\"pihhaiti.address.country\"/>");
         addressTemplate.append("<property name=\"stateProvince\" value=\"pihhaiti.address.stateProvince\"/>");
         addressTemplate.append("<property name=\"cityVillage\" value=\"pihhaiti.address.cityVillage\"/>");
-        addressTemplate.append("<property name=\"neighborhoodCell\" value=\"pihhaiti.address.neighborhoodCell\"/>");
+        addressTemplate.append("<property name=\"address3\" value=\"pihhaiti.address.neighborhoodCell\"/>");
         addressTemplate.append("<property name=\"address1\" value=\"pihhaiti.address.address1\"/>");
         addressTemplate.append("<property name=\"address2\" value=\"pihhaiti.address.address2\"/>");
         addressTemplate.append("</nameMappings>");
@@ -106,7 +106,7 @@ public class PihHaitiActivator implements ModuleActivator {
         addressTemplate.append("<property name=\"country\" value=\"40\"/>");
         addressTemplate.append("<property name=\"stateProvince\" value=\"40\"/>");
         addressTemplate.append("<property name=\"cityVillage\" value=\"40\"/>");
-        addressTemplate.append("<property name=\"neighborhoodCell\" value=\"60\"/>");
+        addressTemplate.append("<property name=\"address3\" value=\"60\"/>");
         addressTemplate.append("<property name=\"address1\" value=\"60\"/>");
         addressTemplate.append("<property name=\"address2\" value=\"60\"/>");
         addressTemplate.append("</sizeMappings>");
@@ -118,7 +118,7 @@ public class PihHaitiActivator implements ModuleActivator {
         addressTemplate.append("<lineByLineFormat>");
         addressTemplate.append("<string>address2</string>");
         addressTemplate.append("<string>address1</string>");
-        addressTemplate.append("<string>neighborhoodCell cityVillage</string>");
+        addressTemplate.append("<string>address3 cityVillage</string>");
         addressTemplate.append("<string>stateProvince country</string>");
         addressTemplate.append("</lineByLineFormat>");
 
