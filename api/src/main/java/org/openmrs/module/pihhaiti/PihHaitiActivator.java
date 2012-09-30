@@ -13,21 +13,18 @@
  */
 package org.openmrs.module.pihhaiti;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.GlobalProperty;
 import org.openmrs.api.context.Context;
-import org.openmrs.layout.web.address.AddressSupport;
-import org.openmrs.layout.web.address.AddressTemplate;
 import org.openmrs.layout.web.name.NameSupport;
 import org.openmrs.layout.web.name.NameTemplate;
-import org.openmrs.module.Activator;
 import org.openmrs.module.ModuleActivator;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * This class contains the logic that is run every time this module
