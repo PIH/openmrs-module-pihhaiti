@@ -17,7 +17,7 @@
 			<br/>
 		</c:when>
 		<c:otherwise>
-			<c:redirect url="/in.htm"/>
+			<c:redirect url="/login.htm"/>
 		</c:otherwise>
 	</c:choose>
 </openmrs:authentication>
