@@ -38,6 +38,54 @@ public enum App {
 		"/module/pihhaiti/rehab/index.form", 
 		"/patientDashboard.form",
 		"Rehab Application User"
+	),
+	MOBILE_CLINIC (
+		"mobileclinic", 
+		"/module/haitimobileclinic/workflow/selectLocationAndService.form", 
+		"/module/haitimobileclinic/workflow/patientDashboard.form",
+		"Mobile Clinic Application User"
+	),
+	CONSULTATIONS (
+		"consultations", 
+		"/findPatient.htm", 
+		"/",
+		"Mobile Clinic Application User"
+	),
+	TB_RESULTS (
+		"tbresults", 
+		"/module/haitimobileclinic/tbResults.form", 
+		"/",
+		"Mobile Clinic Application User"
+	),
+	REFERRALS (
+		"referrals", 
+		"/module/haitimobileclinic/referralsSelect.htm", 
+		"/",
+		"Mobile Clinic Application User"
+	),
+	FIND (
+		"find", 
+		"/findPatient.htm", 
+		"/",
+		"Mobile Clinic Application User"
+	),
+	REPORTING (
+		"reporting", 
+		"/module/haitimobileclinic/workflow/reportingTask.form", 
+		"/",
+		"Mobile Clinic Application User"
+	),
+	DATA_ENTRY_DEFAULTS (
+		"dataentrydefaults", 
+		"/module/haitimobileclinic/dataEntryDefaults.form", 
+		"/",
+		"Mobile Clinic Application User"
+	),
+	ADMINISTRATION (
+		"admin", 
+		"/admin/index.htm", 
+		"/",
+		"Mobile Clinic Admin User"
 	);
 	
 	App(String name, String indexUrl, String patientDashboardUrl, String requiredRoleName) {
