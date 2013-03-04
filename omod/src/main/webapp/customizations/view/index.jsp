@@ -20,15 +20,16 @@
 			</c:otherwise>
 		</c:choose>
 	</tr>
-	<tr>
-		<c:forEach items="${apps}" var="app">
+	<c:forEach items="${apps}" var="app" varStatus="loopStatus">
+		${loopStatus.index % 4 == 0 ? '<tr>' : ''}
 			<td align="center">
 				<a href="${pageContext.request.contextPath}/module/pihhaiti/chooseApp.form?appName=${app.name}">
 					<input type="button" class="appButton" value="<spring:message code="pihhaiti.app.${app.name}" text="${app.name}"/>"/>
 				</a>
 			</td>					
-		</c:forEach>
-	</tr>
+		${loopStatus.index % 4 == 3 ? '</tr>' : ''}
+		${loopStatus.index % 4 != 3 && loopStatus.last ? '</tr>' : ''}
+	</c:forEach>
 </table>
 
 <%@ include file="/WEB-INF/template/footer.jsp" %> 
