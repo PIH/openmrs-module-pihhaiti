@@ -59,6 +59,9 @@ public class CustomBrandingHandler {
 				}
 			}
 			else {
+				// make sure all backslashes are slashes for string replacement to make it work under Windows
+				pathToCopy = pathToCopy.replace('\\', '/');
+				baseFromPath = baseFromPath.replace('\\', '/');
 				String commonFileName = pathToCopy.replace(baseFromPath, "");
 				File fileToReplace = new File(baseToPath + commonFileName);
 				File backupFile = new File(baseToPath + commonFileName + ".bak");
